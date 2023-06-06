@@ -6,14 +6,14 @@
 
 // STEP 1: First, let's import some useful tools that we'll need to accomplish this exercise. That means we'll need to import the useState and useEffect hooks from the React dependency. 
 // Write your code below: 
-
+import {useState, useEffect} from 'React'
 // Write your code above: 
 import './App.css'
 
 function App() {
   // STEP 2: Next, we'll want to create some state management to hold our data. Use the useState hook to create a new piece of state. Call the getter "allPosts", and the setter, "setAllPosts". You can also set the default value of this state to an empty array, since we know that we will eventually be fetching a dataset which will be an array of objects, where each object is an individual blog post. 
   // Write your code below:
-
+const [allPosts, setAllPosts]  = useState([])
   // Write your code above: 
 
   // STEP 5: In order to accomplish the next goal of adding a React form, we'll need some more state management for each of that form's inputs. 
@@ -21,7 +21,8 @@ function App() {
   // STEP 5b: Use the useState hook to create another new pair of state variables. The getter should be called "newPostBody", and the setter "setNewPostBody". Set the default value of this state as a string. 
   
   // Write your code for step 5 below: 
-
+const [newPostTitle, setNewPostTitle] = useState("")
+const [newPostBody, setNewPostBody] = useState("")
   // Write your code for step 5 above: 
 
 
@@ -37,6 +38,20 @@ function App() {
     // All done! To summarize, this callback function, when run, will fetch some data from an API, translate it, and then save that data to our state. Now we'll be able to render that data on our site in step 4. 
 
   // Write your code for step 3 below: 
+useEffect(() => {
+async function fetchBlogPosts() {
+  try {
+    const response = await fetch('https://dummyjson.com/posts')
+    const translatedData = await response.json()
+    fetchBlogPosts(translatedData.results)
+    console.log(translatedData.results)
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+fetchBlogPosts()
+}, [])
 
   // Write your code for step 3 above:
   
