@@ -6,7 +6,7 @@
 
 // STEP 1: First, let's import some useful tools that we'll need to accomplish this exercise. That means we'll need to import the useState and useEffect hooks from the React dependency. 
 // Write your code below: 
-import {useState, useEffect} from 'React'
+import {useState, useEffect} from 'react'
 // Write your code above: 
 import './App.css'
 
@@ -43,8 +43,7 @@ async function fetchBlogPosts() {
   try {
     const response = await fetch('https://dummyjson.com/posts')
     const translatedData = await response.json()
-    fetchBlogPosts(translatedData.results)
-    console.log(translatedData.results)
+    console.log(translatedData)
 
   } catch (error) {
     console.log(error)
